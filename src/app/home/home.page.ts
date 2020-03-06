@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild, ElementRef } from '@angular/core';
 import { PopoverController } from '@ionic/angular';
 import { PopoverComponent } from '../popover/popover.component';
 import { PopoverService } from '../popover.service';
@@ -10,17 +10,23 @@ import { PopoverService } from '../popover.service';
 })
 export class HomePage {
   textAreaText = '';
+  @ViewChild('textAreaRef', {static: true}) textAreaRef: ElementRef;
   items: any = [
-    { item: 'Test String 1 Here' },
-    { item: 'Test String 2 Here' },
-    { item: 'Test String 3 Here' },
-    { item: 'Test String 4 Here' },
-    { item: 'Test String 5 Here' },
-    { item: 'Test String 6 Here' },
-    { item: 'Test String 7 Here' },
-    { item: 'Test String 8 Here' },
-    { item: 'Test String 9 Here' },
-    { item: 'Test String 10 Here' }
+    { name: 'Nguyễn Quang Hiếu' },
+    { name: 'Đoàn Quang Hiếu' },
+    { name: 'Đinh Quốc Hiếu' },
+    { name: 'Hồ Quang Hiếu' },
+    { name: 'Nguyễn Trọng Hiếu' },
+    { name: 'Lê Trần Lam' },
+    { name: 'Nguyễn Thị Anh Đào' },
+    { name: 'Nguyễn Đức Thịnh' },
+    { name: 'Đoàn Quốc Cường' },
+    { name: 'Nguyễn Hải Lâm' },
+    { name: 'Nguyễn Văn Định' },
+    { name: 'Đoàn Nguyên Bảo' },
+    { name: 'Nguyễn Văn Hoà' },
+    { name: 'Văn Tiến Sỹ' },
+    { name: 'Đoàn Kim Ngọc' }
   ];
 
   dismisSubscription: any;
@@ -34,7 +40,8 @@ export class HomePage {
     this.dismisSubscription = this.popService.dismissPopEmitter.subscribe(data => {
       // tslint:disable-next-line: quotemark
       console.log("Dismiss roi hah! Item: " + data);
-      this.textAreaText = this.replaceStringWithOptionsGet(this.textAreaText, data.item.item, data.positionDigit2, data.positionStrEnd);
+      this.textAreaText = this.replaceStringWithOptionsGet(this.textAreaText, data.item.name, data.positionDigit2, data.positionStrEnd);
+      this.textAreaRef.nativeElement.focus();
     });
   }
 
@@ -60,7 +67,7 @@ export class HomePage {
     this.keyBoardSubscription.unsubscribe();
   }
 
-  async prepresentPopover(ev: any) {
+  async presentPopover(ev: any) {
   const popover = await this.popoverCtrl.create({
       component: PopoverComponent,
       event: ev,
@@ -77,9 +84,9 @@ export class HomePage {
   getKeyBoard(evt: KeyboardEvent) {
     // console.log(evt);
     if (evt.data === '@') {
-      this.prepresentPopover(evt);
+      this.presentPopover(evt);
     }
     this.popService.keyboardEnterEmitter.next({ type: evt.inputType, data: evt.data, position: evt.target.selectionStart });
-    console.log(evt.inputType);
+    console.log(evt);
   }
 }

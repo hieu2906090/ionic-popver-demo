@@ -1,7 +1,7 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title>
-      Blank
+      Blank Title Here!
     </ion-title>
   </ion-toolbar>
 </ion-header>
@@ -22,9 +22,9 @@
 </ion-content>
 
 <ion-content padding>
-  <button ion-button (click)="prepresentPopover($event)">Open Popover</button>
+  <button ion-button (click)="presentPopover($event)">Open Popover</button>
 </ion-content>
 <hr>
 <ion-content padding>
-  <textarea [(ngModel)]="textAreaText" (input)="getKeyBoard($event)"></textarea>
+  <textarea #textAreaRef [(ngModel)]="textAreaText" (input)="getKeyBoard($event)"></textarea>
 </ion-content>

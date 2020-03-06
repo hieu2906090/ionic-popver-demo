@@ -7,5 +7,6 @@ import { Subject } from 'rxjs';
 export class PopoverService {
   dismissPopEmitter = new Subject<any>();
   keyboardEnterEmitter = new Subject<any>();
+
   constructor() { }
 }

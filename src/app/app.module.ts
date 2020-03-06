@@ -18,7 +18,6 @@ import { PopoverComponent } from './popover/popover.component';
     StatusBar,
     SplashScreen,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
-    
   ],
   bootstrap: [AppComponent],
 })
